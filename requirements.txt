@@ -1,0 +1,13 @@
+streamlit
+requests
+pandas
+numpy
+scikit-learn
+umap-learn
+hdbscan
+plotly
+networkx
+matplotlib
+seaborn
+st-aggrid
+fpdf

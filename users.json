@@ -1,0 +1,10 @@
+{
+    "users": [
+        {
+            "email": "director@laccei.org",
+            "name": "Director LACCEI",
+            "password": "LACCEI2025",
+            "role": "Director"
+        }
+    ]
+}

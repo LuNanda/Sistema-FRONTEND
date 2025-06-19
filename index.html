@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LACCEI - Investigación y Colaboración</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="Logo-LACCEI.png" alt="LACCEI Logo" width="50" class="d-inline-block align-text-top">
+                LACCEI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#inicio" onclick="showSection('inicio')">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#investigacion" onclick="showSection('investigacion')">Temas de Investigación</a>
+                    </li>
+                    <li class="nav-item" id="auth-nav">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#authModal">Iniciar Sesión/Registrarse</a>
+                    </li>
+                    <li class="nav-item" id="logout-nav" style="display: none;">
+                        <a class="nav-link" href="#" onclick="logout()">Cerrar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container mt-5">
+        <!-- Sección Inicio -->
+        <div id="inicio" class="section">
+            <h1 class="text-center">Bienvenidos a LACCEI</h1>
+            <div class="row mt-4">
+                <div class="col-md-8">
+                    <p class="lead">
+                        <strong>Latin American and Caribbean Consortium of Engineering Institutions (LACCEI)</strong> es una organización dedicada a promover la educación en ingeniería y la colaboración en investigación en América Latina y el Caribe.
+                    </p>
+                    <p>
+                        Nuestra misión es fomentar el intercambio de conocimiento y apoyar proyectos innovadores en áreas clave como CubeSats, Inteligencia Artificial, Robótica, y Energía Renovable.
+                    </p>
+                    <h3>¿Qué ofrecemos?</h3>
+                    <ul>
+                        <li><strong>Investigación:</strong> Explora temas de vanguardia en ingeniería.</li>
+                        <li><strong>Colaboración:</strong> Conecta con instituciones y expertos.</li>
+                        <li><strong>Eventos:</strong> Participa en conferencias internacionales.</li>
+                    </ul>
+                    <p>
+                        <strong>Inicia sesión</strong> para acceder a nuestra plataforma de investigación o <strong>regístrate</strong> para unirte a nuestra comunidad.
+                    </p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <img src="Logo-LACCEI.png" alt="LACCEI Logo" class="img-fluid" style="max-width: 200px;">
+                    <p class="mt-2">LACCEI - Innovación en Ingeniería</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección Temas de Investigación -->
+        <div id="investigacion" class="section" style="display: none;">
+            <h1 class="text-center">Temas de Investigación</h1>
+            <div id="investigacion-content">
+                <div class="alert alert-warning" id="auth-required">
+                    <strong>Autenticación requerida.</strong> Por favor, inicia sesión para acceder a esta sección.
+                </div>
+                <div id="investigacion-authenticated" style="display: none;">
+                    <p class="lead">
+                        Bienvenido, <span id="username-display"></span>. Explora nuestros temas de investigación según tu nivel de acceso.
+                    </p>
+                    <!-- Sección administrativa para Director -->
+                    <div id="admin-panel" style="display: none;" class="mb-4">
+                        <h3>Panel de Administración (Director)</h3>
+                        <p>
+                            Como Director, tienes acceso completo a la plataforma y puedes controlar los permisos de otros usuarios.
+                            <br>
+                            <em>Nota: Configura los permisos en la plataforma de investigación (enlace en CubeSats).</em>
+                        </p>
+                    </div>
+                    <div class="row mt-4">
+                        <!-- Card CubeSats -->
+                        <div class="col-md-6 col-lg-3 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">CubeSats</h5>
+                                    <div id="cubesat-director" style="display: none;">
+                                        <p class="card-text">
+                                            Acceso completo: Explora CubeSats y Nanosatélites con todas las funcionalidades (visualizaciones, filtros, reportes).
+                                        </p>
+                                        <a href="http://localhost:8501" target="_blank" class="btn btn-primary">
+                                            Explorar CubeSats (Completo)
+                                        </a>
+                                    </div>
+                                    <div id="cubesat-miembro" style="display: none;">
+                                        <p class="card-text">
+                                            Acceso intermedio: Visualiza datos y aplica filtros en la plataforma de CubeSats.
+                                        </p>
+                                        <a href="http://localhost:8501" target="_blank" class="btn btn-primary">
+                                            Explorar CubeSats
+                                        </a>
+                                    </div>
+                                    <div id="cubesat-publico" style="display: none;">
+                                        <p class="card-text">
+                                            Acceso limitado: Solo puedes ver una descripción general de CubeSats.
+                                        </p>
+                                        <button class="btn btn-secondary" disabled>Acceso Restringido</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card Inteligencia Artificial -->
+                        <div class="col-md-6 col-lg-3 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Inteligencia Artificial</h5>
+                                    <p class="card-text">
+                                        Próximamente: Descubre avances en IA aplicados a ingeniería.
+                                    </p>
+                                    <button class="btn btn-secondary" disabled>Próximamente</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card Robótica -->
+                        <div class="col-md-6 col-lg-3 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Robótica</h5>
+                                    <p class="card-text">
+                                        Próximamente: Explora innovaciones en robótica.
+                                    </p>
+                                    <button class="btn btn-secondary" disabled>Próximamente</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card Energía Renovable -->
+                        <div class="col-md-6 col-lg-3 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Energía Renovable</h5>
+                                    <p class="card-text">
+                                        Próximamente: Investiga soluciones sostenibles en energía.
+                                    </p>
+                                    <button class="btn btn-secondary" disabled>Próximamente</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Autenticación -->
+    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="authModalLabel">Iniciar Sesión / Registrarse</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" id="authTabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="login-tab" data-bs-toggle="tab" href="#login">Iniciar Sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="register-tab" data-bs-toggle="tab" href="#register">Registrarse</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-3">
+                        <!-- Login -->
+                        <div class="tab-pane fade show active" id="login">
+                            <form id="login-form">
+                                <div class="mb-3">
+                                    <label for="login-email" class="form-label">Correo Electrónico</label>
+                                    <input type="email" class="form-control" id="login-email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="login-password" class="form-label">Contraseña</label>
+                                    <input type="password" class="form-control" id="login-password" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                                <div id="login-error" class="text-danger mt-2" style="display: none;"></div>
+                            </form>
+                        </div>
+                        <!-- Registro -->
+                        <div class="tab-pane fade" id="register">
+                            <form id="register-form">
+                                <div class="mb-3">
+                                    <label for="register-email" class="form-label">Correo Electrónico</label>
+                                    <input type="email" class="form-control" id="register-email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="register-name" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="register-name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="register-password" class="form-label">Contraseña</label>
+                                    <input type="password" class="form-control" id="register-password" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="register-role" class="form-label">Tipo de Usuario</label>
+                                    <select class="form-select" id="register-role" required>
+                                        <option value="Miembro">Miembro</option>
+                                        <option value="Público General">Público General</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Registrarse</button>
+                                <div id="register-error" class="text-danger mt-2" style="display: none;"></div>
+                                <div id="register-success" class="text-success mt-2" style="display: none;"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript personalizado -->
+    <script src="script.js"></script>
+</body>
+</html>

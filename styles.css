@@ -1,0 +1,87 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+.navbar {
+    background-color: #003087 !important;
+}
+
+.navbar-brand img {
+    margin-right: 10px;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: #d4e6ff !important;
+}
+
+.section {
+    padding: 20px;
+}
+
+h1 {
+    color: #003087;
+    font-weight: bold;
+}
+
+.lead {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.btn-primary {
+    background-color: #003087;
+    border-color: #003087;
+}
+
+.btn-primary:hover {
+    background-color: #00205b;
+    border-color: #00205b;
+}
+
+.modal-content {
+    border-radius: 10px;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #003087;
+    color: #ffffff;
+    border-color: #003087;
+}
+
+.nav-tabs .nav-link {
+    color: #003087;
+}
+
+.alert {
+    margin-top: 20px;
+}
+
+.card {
+    border: 1px solid #003087;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-title {
+    color: #003087;
+}
+
+.card-text {
+    color: #555;
+}
+
+#admin-panel {
+    background-color: #e6f0ff;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #003087;
+}
